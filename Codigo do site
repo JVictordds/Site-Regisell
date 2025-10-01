@@ -4,103 +4,134 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loja Online</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #000000; /* fundo preto */
-            color: #ffffff; /* texto branco */
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #000000; /* fundo preto */
+        color: #ffffff; /* texto branco */
+    }
+
+    header {
+        background-color: #000000; /* preto */
+        color: #ffffff; /* branco */
+        text-align: center;
+        padding: 20px;
+    }
+
+    header img {
+        width: 150px;
+    }
+
+    .categories {
+        display: flex;
+        justify-content: center;
+        background-color: #007BFF; /* azul */
+        padding: 10px;
+    }
+
+    .categories a {
+        color: #ffffff; /* branco */
+        text-decoration: none;
+        padding: 10px 20px;
+        margin: 0 15px;
+        background-color: #000000; /* preto */
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .categories a:hover {
+        background-color: #0056b3; /* azul mais escuro */
+    }
+
+    .products {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 15px;
+        padding: 20px;
+    }
+
+    .product {
+        background-color: #000000;
+        padding: 20px; /* Aumentei o padding para melhor espaçamento */
+        border-radius: 10px;
+        box-shadow: 0 0 10px #007BFF;
+        text-align: center;
+        color: #ffffff;
+        transition: transform 0.3s, box-shadow 0.3s; /* Efeito de transição */
+    }
+
+    .product:hover {
+        transform: translateY(-5px); /* Levanta o produto ao passar o mouse */
+        box-shadow: 0 0 15px #0056b3; /* Efeito de sombra mais intenso */
+    }
+
+    .product img {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+        border: 1px solid #007BFF; /* Borda mais fina para imagens */
+        object-fit: cover; /* Ajusta a imagem para cobrir o espaço sem distorção */
+    }
+
+    .product-info {
+        margin-top: 15px; /* Aumentei o espaço entre a imagem e as informações */
+    }
+
+    .product-info h3 {
+        font-size: 16px; /* Aumentei a fonte do título para melhorar a legibilidade */
+        margin: 0;
+        color: #007BFF; /* título azul */
+    }
+
+    .product-info p {
+        margin: 5px 0;
+        font-size: 14px; /* Aumentei a fonte da descrição para melhorar a legibilidade */
+        color: #ffffff; /* texto branco */
+    }
+
+    .product-info span {
+        font-weight: bold;
+        color: #007BFF; /* labels em azul */
+    }
+
+    @media (max-width: 1400px) {
+        .product {
+            width: calc(100% / 5 - 14px);
         }
+    }
 
-        header {
-            background-color: #000000; /* preto */
-            color: #ffffff; /* branco */
-            text-align: center;
-            padding: 20px;
+    @media (max-width: 1000px) {
+        .product {
+            width: calc(100% / 3 - 14px);
         }
+    }
 
-        header img {
-            width: 150px;
+    @media (max-width: 600px) {
+        .product {
+            width: calc(100% / 2 - 14px);
         }
+    }
 
-        .categories {
-            display: flex;
-            justify-content: center;
-            background-color: #007BFF; /* azul */
-            padding: 10px;
-        }
-
-        .categories a {
-            color: #ffffff; /* branco */
-            text-decoration: none;
-            padding: 10px 20px;
-            margin: 0 15px;
-            background-color: #000000; /* preto */
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .categories a:hover {
-            background-color: #0056b3; /* azul mais escuro */
-        }
-
-        .products {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 15px;
-    padding: 20px;
-}
-
-.product {
-    background-color: #000000;
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px #007BFF;
-    text-align: center;
-    color: #ffffff;
-}
-
-            box-sizing: border-box;
-            text-align: center;
-            color: #ffffff; /* texto branco */
-        }
- 
-        .product img {
+    @media (max-width: 400px) {
+        .product {
             width: 100%;
-            height: auto;
-            border-radius: 5px;
-            border: 2px solid #007BFF; /* borda azul */
-        }
-
-        .product-info {
-            margin-top: 10px;
         }
 
         .product-info h3 {
-            font-size: 14px;
-            margin: 0;
-            color: #007BFF; /* título azul */
+            font-size: 14px; /* Menor fonte para cabeçalhos em dispositivos muito pequenos */
         }
 
         .product-info p {
-            margin: 3px 0;
-            font-size: 12px;
-            color: #ffffff; /* texto branco */
+            font-size: 12px; /* Menor fonte para descrição em dispositivos muito pequenos */
         }
+    }
 
-        .product-info span {
-            font-weight: bold;
-            color: #007BFF; /* labels em azul */
-        }
-
-        @media (max-width: 1400px) { .product { width: calc(100% / 5 - 14px); } }
-        @media (max-width: 1000px) { .product { width: calc(100% / 3 - 14px); } }
-        @media (max-width: 600px) { .product { width: calc(100% / 2 - 14px); } }
-        @media (max-width: 400px) { .product { width: 100%; } }
-
-        .category-content { display: none; }
-    </style>
+    .category-content {
+        display: none;
+    }
+</style>
 </head>
 <body>
     <header>
@@ -137,16 +168,15 @@
             <div class="product"><img src="console.jpg" alt="Carregador para motos"><div class="product-info"><h3>Carregador para celular e GPS, compatível com todos os modelos de moto </h3><p><span>Marca:</span> Kongur</p><p><span>Preço:</span> R$ 30,00</p><p><span>Estoque:</span> 5</p></div></div>
             <div class="product"><img src="https://i.ibb.co/B2SMf6bG/18-Sem-T-tulo-20250929132145.png" alt="Teclado de uma mão"><div class="product-info"><h3>Teclado de uma mão com suporte para pulso e com caracteres luminosos (Modelo: KEY-9968)</h3><p><span>Marca:</span> Inova prime</p><p><span>Preço:</span> R$ 74,99</p><p><span>Estoque:</span> 3</p></div></div>
             <div class="product"><img src="https://i.ibb.co/WN2Tkg1X/30-Sem-T-tulo-20250930165507.png" alt="Luminária de mesa"><div class="product-info"><h3>Luminária de mesa com 3 cores de luz</h3><p><span>Marca:</span> Xtrad</p><p><span>Preço:</span> R$ 99,90</p><p><span>Estoque:</span> 20</p></div></div>
-            <div class="product"><img src="smarttv.jpg" alt="Adaptador de energia"><div class="product-info"><h3>Fonte chaveada para tablet, câmera de segurança, telefone e TV box</h3><p><span>Marca:</span> Aoweixun Orversion</p><p><span>Preço:</span> R$ 24,99</p><p><span>Estoque:</span> 6</p></div></div>
-            <div class="product"><img src="smarttv.jpg" alt="Carregador de viagem"><div class="product-info"><h3>Portátil, carrega rapidamente o celular pelo ascendedor do carro</h3><p><span>Marca:</span> Dotcell</p><p><span>Preço:</span> R$ 69,99</p><p><span>Estoque:</span> 6</p></div></div>
+            <div class="product"><img src="https://i.ibb.co/r2rtg8MW/30-Sem-T-tulo-20251001155002.png" alt="Adaptador de energia"><div class="product-info"><h3>Adaptador de energia com fonte chaveada para tablet, câmera de segurança, telefone e TV box</h3><p><span>Marca:</span> Aoweixun Orvesion</p><p><span>Preço:</span> R$ 24,99</p><p><span>Estoque:</span> 6</p></div></div>
             <div class="product"><img src="smarttv.jpg" alt="Carregador turbo"><div class="product-info"><h3>O carregador Turbo Charger DANX é compacto, rápido e eficiente</h3><p><span>Marca:</span> Danx</p><p><span>Preço:</span> R$ 39,99</p><p><span>Estoque:</span> 6</p></div></div>
-            <div class="product"><img src="smarttv.jpg" alt="Carregador rápido"><div class="product-info"><h3>Carregador rápido  com duas entradas USB com conexão tipo C</h3><p><span>Marca:</span> Lehmox</p><p><span>Preço:</span> R$ 29,99</p><p><span>Estoque:</span> 6</p></div></div>
+            <div class="product"><img src="https://i.ibb.co/qYZw6BGR/30-Sem-T-tulo-20251001144134.png" alt="Carregador rápido"><div class="product-info"><h3>Carregador rápido  com duas entradas USB com conexão tipo C</h3><p><span>Marca:</span> Lehmox</p><p><span>Preço:</span> R$ 29,99</p><p><span>Estoque:</span> 6</p></div></div>
             <div class="product"><img src="smarttv.jpg" alt="Carregador turbo"><div class="product-info"><h3>Carregador turbo com cabo de 1 metro de comprimento</h3><p><span>Marca:</span> H'maston</p><p><span>Preço:</span> R$ 39,99</p><p><span>Estoque:</span> 6</p></div></div>
             <div class="product"><img src="smarttv.jpg" alt="Carregador duplo PD + QC"><div class="product-info"><h3>Carregamento turbo 65W, multi carregamento, possui chip inteligente e serve também para dispositivos maiores como laptops, consoles e tablets</h3><p><span>Marca:</span> Danx</p><p><span>Preço:</span> R$ 149,99</p><p><span>Estoque:</span> 6</p></div></div>
             <div class="product"><img src="smarttv.jpg" alt="Cabo de carregamento rápido"><div class="product-info"><h3>Cabo de carregamento rápido 60W tipo C</h3><p><span>Marca:</span> ASL</p><p><span>Preço:</span> R$ 39,99</p><p><span>Estoque:</span> 6</p></div></div>
             <div class="product"><img src="smarttv.jpg" alt="Cabo USB Premium"><div class="product-info"><h3>Conecta, carrega e sincroniza seu smartphone, tablet ou dispositivos compatíveis Tipo C com rapidez e segurança</h3><p><span>Marca:</span> DANX</p><p><span>Preço:</span> R$ 29,99</p><p><span>Estoque:</span> 2</p></div></div>
             <div class="product"><img src="https://i.ibb.co/Zzc9XBsj/30-Sem-T-tulo-20250930161601.png" alt="Carregador turbo tipo c-lightning"><div class="product-info"><h3>Carregador turbo tipo c-lightning:alta potência e carga super rápida, bivolt automático, conectores de alta eficiência e possui proteção conta super aquecimento e curto-circuito</h3><p><span>Marca:</span> ASL</p><p><span>Preço:</span> R$ 69,99</p><p><span>Estoque:</span> 5</p></div></div>
-            <div class="product"><img src="smarttv.jpg" alt="kit de carregador para viagem"><div class="product-info"><h3>kit de carregador USB de carregamento rápido </h3><p><span>Marca:</span> KLGO</p><p><span>Preço:</span> R$ 29,99</p><p><span>Estoque:</span> 6</p></div></div>
+            <div class="product"><img src="https://i.ibb.co/C517LyxF/30-Sem-T-tulo-20251001154222.png" alt="Carregador de viagem"><div class="product-info"><h3>Carregador de viagem portátil, simples e compacto, carrega rapidamente o celular pelo ascendedor do carro</h3><p><span>Marca:</span> Dotcell</p><p><span>Preço:</span> R$ 69,99</p><p><span>Estoque:</span> 4</p></div></div>
             <div class="product"><img src="mouse.jpg" alt="Carregador universal"><div class="product-info"><h3>Entrada: AC 110V-240V 50/60Hz, Saída: 2.4A Máx, Potência: 12W, Cabo de dados tipo C 1000mm</h3><p><span>Marca:</span> ASL</p><p><span>Preço:</span> R$ 49,99</p><p><span>Estoque:</span> 20</p></div></div>
             <div class="product"><img src="smarttv.jpg" alt="Caixa de som"><div class="product-info"><h3>Caixa de som que vem com microfone, possio luzes LED coloridas, Frequência do falante:4Ω 10W, capacidade da bateria: 1200mAh, tempo de reprodução: 3 horas, distância de transmissão: 10M</h3><p><span>Marca:</span> Eletromex</p><p><span>Preço:</span> R$ 89,99</p><p><span>Estoque:</span> 6</p></div></div>
             <div class="product"><img src="mouse.jpg" alt="Caixa de som portátil"><div class="product-info"><h3>Som imersivo e poderoso, design moderno, bateria de alta performance e conxão sem limites</h3><p><span>Marca:</span> Danx</p><p><span>Preço:</span> R$ 150,00</p><p><span>Estoque:</span> 20</p></div></div>
@@ -172,7 +202,7 @@
             <div class="product"><img src="https://i.ibb.co/cSxWmt26/30-Sem-T-tulo-20250930163630.png" alt="J6 2018"><div class="product-info"><h3>J6 2018</h3><p><span>Preço:</span> R$ 29,90</p><p><span>Estoque:</span> 25</p></div></div>
             <div class="product"><img src="acessorio.jpg" alt="J7 PRIME"><div class="product-info"><h3>J7 PRIME</h3><p><span>Preço:</span> R$ 39,90</p><p><span>Estoque:</span> 20</p></div></div>
             <div class="product"><img src="acessorio.jpg" alt="J8"><div class="product-info"><h3>J8</h3><p><span>Preço:</span> R$ 24,90</p><p><span>Estoque:</span> 20</p></div></div>
-            <div class="product"><img src="acessorio.jpg" alt="A01"><div class="product-info"><h3>A01</h3><p><span>Preço:</span> R$ 29,90</p><p><span>Estoque:</span> 20</p></div></div>
+            <div class="product"><img src="https://i.ibb.co/KjMHwBcX/30-Sem-T-tulo-20251001150200.png" alt="A01"><div class="product-info"><h3>A01</h3><p><span>Preço:</span> R$ 29,90</p><p><span>Estoque:</span> 20</p></div></div>
             <div class="product"><img src="acessorio.jpg" alt="A02"><div class="product-info"><h3>A02</h3><p><span>Preço:</span> R$ 29,90</p><p><span>Estoque:</span> 20</p></div></div>
             <div class="product"><img src="acessorio.jpg" alt="A03"><div class="product-info"><h3>A03</h3><p><span>Preço:</span> R$ 24,90</p><p><span>Estoque:</span> 20</p></div></div>
             <div class="product"><img src="acessorio.jpg" alt="A03 CORE"><div class="product-info"><h3>A03 CORE</h3><p><span>Preço:</span> R$ 29,90</p><p><span>Estoque:</span> 20</p></div></div>
@@ -181,7 +211,7 @@
             <div class="product"><img src="acessorio.jpg" alt="A04 CORE"><div class="product-info"><h3>A04 CORE</h3><p><span>Preço:</span> R$ 29,90</p><p><span>Estoque:</span> 20</p></div></div>
             <div class="product"><img src="acessorio.jpg" alt="A04A S"><div class="product-info"><h3>A04 S</h3><p><span>Preço:</span> R$ 29,90</p><p><span>Estoque:</span> 20</p></div></div>
             <div class="product"><img src="https://i.ibb.co/3QmG06D/28-Sem-T-tulo-20250930142241.png" alt="A05"><div class="product-info"><h3>A05</h3><p><span>Preço:</span> R$ 29,90</p><p><span>Estoque:</span> 20</p></div></div>
-            <div class="product"><img src="acessorio.jpg" alt="A05 S"><div class="product-info"><h3>A05 S</h3><p><span>Preço:</span> R$ 29,90</p><p><span>Estoque:</span> 20</p></div></div>
+            <div class="product"><img src="https://i.ibb.co/23DXkLCf/30-Sem-T-tulo-20251001160923.png" alt="A05 S"><div class="product-info"><h3>A05 S</h3><p><span>Preço:</span> R$ 29,90</p><p><span>Estoque:</span> 20</p></div></div>
             <div class="product"><img src="acessorio.jpg" alt="A06"><div class="product-info"><h3>A06</h3><p><span>Preço:</span> R$ 29,90</p><p><span>Estoque:</span> 20</p></div></div>
             <div class="product"><img src="acessorio.jpg" alt="A06 S"><div class="product-info"><h3>A06S</h3><p><span>Preço:</span> R$ 29,90</p><p><span>Estoque:</span> 20</p></div></div>
             <div class="product"><img src="https://i.ibb.co/nsQSgdJM/28-Sem-T-tulo-20250930142303.png" alt="A10"><div class="product-info"><h3>A10</h3><p><span>Preço:</span> R$ 29,90</p><p><span>Estoque:</span> 20</p></div></div>
@@ -338,7 +368,7 @@
             <div class="product"><img src="acessorio.jpg" alt="A04 CORE"><div class="product-info"><h3>A04 CORE</h3><p><span>Preço:</span> R$ 14,99</p><p><span>Estoque:</span> 10</p></div></div>
             <div class="product"><img src="acessorio.jpg" alt="A04 S"><div class="product-info"><h3>A04 S</h3><p><span>Preço:</span> R$ 14,99</p><p><span>Estoque:</span> 10</p></div></div>
             <div class="product"><img src="acessorio.jpg" alt="A05"><div class="product-info"><h3>A05</h3><p><span>Preço:</span> R$ 14,99</p><p><span>Estoque:</span> 10</p></div></div>
-            <div class="product"><img src="acessorio.jpg" alt="A05 S"><div class="product-info"><h3>A05 S</h3><p><span>Preço:</span> R$ 14,99</p><p><span>Estoque:</span> 10</p></div></div>
+            <div class="product"><img src="acessorio.jpg" alt="A05 S"><div class="product-info"><h3>A05</h3><p><span>Preço:</span> R$ 14,99</p><p><span>Estoque:</span> 10</p></div></div>
             <div class="product"><img src="acessorio.jpg" alt="A06"><div class="product-info"><h3>A06</h3><p><span>Preço:</span> R$ 14,99</p><p><span>Estoque:</span> 10</p></div></div>
             <div class="product"><img src="acessorio.jpg" alt="A10"><div class="product-info"><h3>A10</h3><p><span>Preço:</span> R$ 14,99</p><p><span>Estoque:</span> 10</p></div></div>
             <div class="product"><img src="acessorio.jpg" alt="A10 S"><div class="product-info"><h3>A10 S</h3><p><span>Preço:</span> R$ 14,99</p><p><span>Estoque:</span> 10</p></div></div>
@@ -429,9 +459,9 @@
         </div>
     <h2>Proteção de câmera</h2>
         <div class="products">
-            <div class="product"><img src="acessorio.jpg" alt="IPHONE 11"><div class="product-info"><h3>IPHONE 11</h3><p><span>Preço:</span> R$ 14,99</p><p><span>Estoque:</span> 10</p></div></div>
-            <div class="product"><img src="acessorio.jpg" alt="IPHONE 11 PRO"><div class="product-info"><h3>IPHONE 11 PRO</h3><p><span>Preço:</span> R$ 14,99</p><p><span>Estoque:</span> 10</p></div></div>
-            <div class="product"><img src="acessorio.jpg" alt="IPHONE 11 PRO MAX"><div class="product-info"><h3>IPHONE 11 PRO MAX</h3><p><span>Preço:</span> R$ 14,99</p><p><span>Estoque:</span> 10</p></div></div>
+            <div class="product"><img src="https://i.ibb.co/JFG7Jt4y/30-Sem-T-tulo-20251001143342.png" alt="IPHONE 11"><div class="product-info"><h3>IPHONE 11</h3><p><span>Preço:</span> R$ 14,99</p><p><span>Estoque:</span> 10</p></div></div>
+            <div class="product"><img src="https://i.ibb.co/cc1f6QmV/30-Sem-T-tulo-20251001143403.png" alt="IPHONE 11 PRO"><div class="product-info"><h3>IPHONE 11 PRO</h3><p><span>Preço:</span> R$ 14,99</p><p><span>Estoque:</span> 10</p></div></div>
+            <div class="product"><img src="https://i.ibb.co/cc1f6QmV/30-Sem-T-tulo-20251001143403.png" alt="IPHONE 11 PRO MAX"><div class="product-info"><h3>IPHONE 11 PRO MAX</h3><p><span>Preço:</span> R$ 14,99</p><p><span>Estoque:</span> 10</p></div></div>
             <div class="product"><img src="acessorio.jpg" alt="IPHONE 12"><div class="product-info"><h3>IPHONE 12</h3><p><span>Preço:</span> R$ 14,99</p><p><span>Estoque:</span> 10</p></div></div>
             <div class="product"><img src="acessorio.jpg" alt="IPHONE 13"><div class="product-info"><h3>IPHONE 13</h3><p><span>Preço:</span> R$ 14,99</p><p><span>Estoque:</span> 10</p></div></div>
             <div class="product"><img src="acessorio.jpg" alt="IPHONE 13 PRO MAX"><div class="product-info"><h3>IPHONE 13 PRO MAX</h3><p><span>Preço:</span> R$ 14,99</p><p><span>Estoque:</span> 10</p></div></div>
@@ -473,18 +503,18 @@
         <h2>Variados</h2>
         <div class="products">
     <div class="product"><img src="https://i.ibb.co/m5ZPB798/16-Sem-T-tulo-20250928211229.png" alt="Console de jogo"><div class="product-info"><h3>Console de jogo: sistema de jogo digital de 3 polegadas LCD super ampla, o console é fino, portátil e moderno, o dispositivo multi-plataforma digital, pode jogar na TV, possui mais de 400 jogos, suporte de duelo, tela HD e possui longa duração </h3><p><span>Marca:</span> H'MASTON</p><p><span>Preço:</span> R$ 89,99</p><p><span>Estoque:</span> 2</p></div></div> <!-- modelo YXJ02 -->
-    <div class="product"><img src="multimetro.jpg" alt="Multímetro Analógico"><div class="product-info"><h3>Conteúdo da caixa: Multímetro, cabos testadores e manual de instrução</h3><p><span>Marca:</span> IT.BLUE</p><p><span>Preço:</span> R$ 39,99</p><p><span>Estoque:</span> 5</p></div></div> <!-- modelo LE-944 -->
+    <div class="product"><img src="https://i.ibb.co/v6XxHcB8/30-Sem-T-tulo-20251001155914.png" alt="Bateria de polímero de íon-lítio"><div class="product-info"><h3>Bateria de polímero de íon-lítio (5000mAh)</h3><p><span>Marca:</span> IT.BLUE</p><p><span>Preço:</span> R$ 59,99</p><p><span>Estoque:</span> 4</p></div></div>
     <div class="product"><img src="distribuidor.jpg" alt="Distribuidor automático de água"><div class="product-info"><h3>Capacidade da bateria: 1200mA, voltagem DC-5Vpe/4 Watts</h3><p><span>Marca:</span> Genérico</p><p><span>Preço:</span> R$ 39,99</p><p><span>Estoque:</span> 4</p></div></div>
     <div class="product"><img src="https://i.ibb.co/1t3shTYz/19-Sem-T-tulo-20250929133906.png" alt="Suporte smartphone de mesa"><div class="product-info"><h3>Suporte smartphone de mesa inclinável, compacto, estável,rotação de até 360°, para telas 5.8 a 9.3</h3><p><span>Marca:</span> OHEY</p><p><span>Preço:</span> R$ 29,99</p><p><span>Estoque:</span> 4</p></div></div> <!-- modelo FF0073 -->
     <div class="product"><img src="https://i.ibb.co/rKvdRrCv/22-Sem-T-tulo-20250929165247.png" alt="Braçadeira esportiva"><div class="product-info"><h3>Braçadeira esportiva durável, confortável,  ziper liso, tecido impermeável</h3><p><span>Marca:</span> H'MASTON</p><p><span>Preço:</span> R$ 39,99</p><p><span>Estoque:</span> 3</p></div></div> <!-- modelo YB-13 -->
     <div class="product"><img src="https://i.ibb.co/Dfdhn880/23-Sem-T-tulo-20250930132355.png" alt="Mini bomba de ar"><div class="product-info"><h3>Mini bomba de ar:a boca maior é usada para bicicleta, carro e moto. A boca em formato de ponta é usada em balões de gás e pneu americano. O formato de agulha é usado em várias bolas infláveis.</h3><p><span>Marca:</span> IT.BLUE</p><p><span>Preço:</span> R$ 99,99</p><p><span>Estoque:</span> 2</p></div></div> <!-- modelo LE-1958 -->
     <div class="product"><img src="https://i.ibb.co/zhzSN2WZ/20-Sem-T-tulo-20250929134634.png" alt="Suporte dobrável de metal"><div class="product-info"><h3>Suporte dobrável de metal com rotação de 360 graus, estável e não tomba</h3><p><span>Marca:</span> Inova prime</p><p><span>Preço:</span> R$ 49,99</p><p><span>Estoque:</span> 2</p></div></div> <!-- modelo KV-754 -->
-    <div class="product"><img src="cabo.jpg" alt="Cabo Stereo"><div class="product-info"><h3> Cabo para smartphone,ipod,Iphone ou MP3, conectores codificados e carregadores ultra flexiveis para instalação fácil</h3><p><span>Marca:</span> KAPBOM</p><p><span>Preço:</span> R$ 14,99</p><p><span>Estoque:</span> 10</p></div></div>
-    <div class="product"><img src="cabo.jpg" alt="Cabo flexivel"><div class="product-info"><h3> Som de qualidade e sem ruído, atividade antioxidante para uma vida mais longa, corpo de fios de algodão e maior maciez</h3><p><span>Marca:</span> INOVA</p><p><span>Preço:</span> R$ 14,99</p><p><span>Estoque:</span> 10</p></div></div> <!-- modelo CBO-7381 -->
+    <div class="product"><img src="https://i.ibb.co/S4mK8qHk/30-Sem-T-tulo-20251001164240.png" alt="Cabo Stereo"><div class="product-info"><h3> Cabo para smartphone,ipod,Iphone ou MP3, conectores codificados e carregadores ultra flexiveis para instalação fácil</h3><p><span>Marca:</span> KAPBOM</p><p><span>Preço:</span> R$ 14,99</p><p><span>Estoque:</span> 10</p></div></div>
+    <div class="product"><img src="https://i.ibb.co/DPtvLGzD/30-Sem-T-tulo-20251001164253.png" alt="Cabo flexivel"><div class="product-info"><h3> Som de qualidade e sem ruído, atividade antioxidante para uma vida mais longa, corpo de fios de algodão e maior maciez</h3><p><span>Marca:</span> INOVA</p><p><span>Preço:</span> R$ 14,99</p><p><span>Estoque:</span> 10</p></div></div> <!-- modelo CBO-7381 -->
     <div class="product"><img src="cabo.jpg" alt="Cabo "><div class="product-info"><h3> Qualidade garantida com testes rigorosos</h3><p><span>Marca:</span> IT.BLUE</p><p><span>Preço:</span> R$ 14,99</p><p><span>Estoque:</span> 9</p></div></div>
     <div class="product"><img src="https://i.ibb.co/KxZ4xc0x/30-Sem-T-tulo-20250930162709.png" alt="Cabo adaptador Displayport ( MACHO) X VGA (FÊMEA) "><div class="product-info"><h3>Cabo adaptador Displayport ( MACHO) X VGA (FÊMEA): O versátil adaptador DisplayPort para VGA permite  que você exiba conteúdo de vídeo de qualquer notebook ou desktop com a saída de vídeo DisplayPort em uma variedade de dispositivos compatíveis com VGA</h3><p><span>Marca:</span> X-CELL</p><p><span>Preço:</span> R$ 19,99</p><p><span>Estoque:</span> 3</p></div></div> <!-- XC-ADP-23 -->
     <div class="product"><img src="https://i.ibb.co/s9cfmJLV/21-Sem-T-tulo-20250929142913.png" alt="Tripé de esponja"><div class="product-info"><h3> O mini tripé flexivel foi projetado para se conectar a qualquer objeto que possa enrolar as três pernas ao redor, possui articulações flexiveis que dobram e giram até 360 graus</h3><p><span>Marca:</span> INOVA</p><p><span>Preço:</span> R$ 11,99</p><p><span>Estoque:</span> 4</p></div></div> <!-- modelo SPO-7036-U -->
-    <div class="product"><img src="suporte.jpg" alt="Suporte articulado "><div class="product-info"><h3> Dobrável e portátil, ajuste em diversos ângulos, é adequado para gravação em computador, canto em rede, estúdio de gravação, estação de rádio, transmissão ao vivo,etc</h3><p><span>Marca:</span> TOMATE</p><p><span>Preço:</span> R$ 11,99</p><p><span>Estoque:</span> 4</p></div></div> <!-- modelo MTG-1026 -->
+    <div class="product"><img src="https://i.ibb.co/hJt2shsB/30-Sem-T-tulo-20251001162152.png" alt="Suporte articulado "><div class="product-info"><h3>Suporte articulado, dobrável e portátil, ajuste em diversos ângulos, é adequado para gravação em computador, canto em rede, estúdio de gravação, estação de rádio, transmissão ao vivo,etc</h3><p><span>Marca:</span> TOMATE</p><p><span>Preço:</span> R$ ----</p><p><span>Estoque:</span> 2</p></div></div> <!-- modelo MTG-1026 -->
     <div class="product"><img src="balança.jpg" alt="Balança de cozinha com visor digital "><div class="product-info"><h3> A balança Frevo é feita em plástico e ferro, equipada com sistema de alta precisão de calibragem</h3><p><span>Marca:</span> FREVOútil</p><p><span>Preço:</span> R$ 34,99</p><p><span>Estoque:</span> 2</p></div></div>
     <div class="product"><img src="https://i.ibb.co/pB7CLD5x/30-Sem-T-tulo-20250930160212.png" alt="Farol de bicicleta "><div class="product-info"><h3> Farol de bicicleta,feito de plástico ABS e possui Resistência à abrasão e resistência ao deslizamento, luz LED multifuncional, longa vida, bateria de lítio embutida, carregamento rápido</h3><p><span>Marca:</span> LINTIAN</p><p><span>Preço:</span> R$ 49,99</p><p><span>Estoque:</span> 2</p></div></div> <!-- modelo LT-8528 -->
     <div class="product"><img src="https://i.ibb.co/YB4YBZ1S/15-Sem-T-tulo-20250928210706.png" alt="kit tesouras"><div class="product-info"><h3> Kit de tesouras: contém 3 tesouras</h3><p><span>Marca:</span> PITBULL</p><p><span>Preço:</span> R$ 29,99</p><p><span>Estoque:</span> 4</p></div></div> <!-- modelo CHIS0080 -->
